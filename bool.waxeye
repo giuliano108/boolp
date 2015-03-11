@@ -1,0 +1,13 @@
+# An orexpr can degenerate to a single andexpr which in turn can degenerate to a term.
+# The grammar is defined as a sum of products (orexpr of andexprs),
+# the latter taking implicit precedence over the former.
+input     <= ws orexpr ws
+orexpr    <- andexpr *( :'||' ws andexpr)
+andexpr   <- primary *( :'&&' ws primary)
+primary   <= '!' ws primary
+           | :'(' ws orexpr :')' ws
+           | term
+
+term      <- [A-Za-z] *[A-Za-z0-9_] ws
+
+ws        <: *[ \t\n\r]
