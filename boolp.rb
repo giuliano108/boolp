@@ -199,11 +199,11 @@ class TagSelect
     end
 
     def gen_and_multi args
-        "(#{args} - a).empty?"
+        "(#{args.inspect} - a).empty?"
     end
 
     def gen_or_multi args
-        "!(#{args} & a).empty?"
+        "!(#{args.inspect} & a).empty?"
     end
 
 end
